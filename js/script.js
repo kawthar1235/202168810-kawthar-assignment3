@@ -394,6 +394,7 @@ const $$ = (selector) => document.querySelectorAll(selector);
   });
 })();
 
+
 /* =========================
    Back To Top 
 ========================= */
@@ -410,4 +411,42 @@ const $$ = (selector) => document.querySelectorAll(selector);
       behavior: "smooth"
     });
   });
+})();
+
+/* =========================
+   Random Quote (API)
+========================= */
+(function randomQuote() {
+  const quoteText = $("#quoteText");
+  const quoteAuthor = $("#quoteAuthor");
+  const newQuoteBtn = $("#newQuoteBtn");
+
+  if (!quoteText || !quoteAuthor || !newQuoteBtn) return;
+
+  const API_URL = "https://motivational-spark-api.vercel.app/api/quotes/random";
+
+  async function fetchQuote() {
+    try {
+      quoteText.textContent = "Loading quote...";
+      quoteAuthor.textContent = "";
+
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch quote");
+      }
+
+      const data = await response.json();
+
+      quoteText.textContent = `"${data.quote}"`;
+      quoteAuthor.textContent = `— ${data.author}`;
+    } catch (error) {
+      quoteText.textContent = `"Stay consistent. Small steps matter."`;
+      quoteAuthor.textContent = "— Kawthar 💜";
+      console.error("Quote API failed:", error);
+    }
+  }
+
+  fetchQuote();
+  newQuoteBtn.addEventListener("click", fetchQuote);
 })();

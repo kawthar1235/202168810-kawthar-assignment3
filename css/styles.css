@@ -1079,3 +1079,40 @@ body > *{
   }
 }
 
+/* =========================
+   QUOTE (Assignment 3)
+========================= */
+
+.quote-box{
+  margin: 12px 0 16px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  max-width: 480px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.quote-box:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.quote-text{
+  margin: 0 0 6px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.quote-author{
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.quote-box .btn{
+  font-size: 13px;
+  padding: 6px 10px;
+}
