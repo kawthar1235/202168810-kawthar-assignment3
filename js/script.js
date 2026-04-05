@@ -450,3 +450,298 @@ const $$ = (selector) => document.querySelectorAll(selector);
   fetchQuote();
   newQuoteBtn.addEventListener("click", fetchQuote);
 })();
+
+/* =========================
+   Latest GitHub Project
+========================= */
+(function latestGitHubProject() {
+  const titleEl = $("#latestProjectTitle");
+  const descEl = $("#latestProjectDesc");
+  const statusEl = $("#latestProjectStatus");
+  const linkEl = $("#latestProjectLink");
+  const progressWrap = $("#latestProjectProgressWrap");
+  const progressFill = $("#latestProjectProgressFill");
+  const progressText = $("#latestProjectProgressText");
+
+  if (
+    !titleEl || !descEl || !statusEl || !linkEl ||
+    !progressWrap || !progressFill || !progressText
+  ) return;
+
+  const username = "kawthar1235";
+
+  function parseStatus(topics = []) {
+    const statusTopic = topics.find((t) => t.startsWith("status-"));
+    const progressTopic = topics.find((t) => t.startsWith("progress-"));
+
+    let status = "Not specified";
+    let progress = null;
+
+    if (statusTopic) {
+      status = statusTopic.replace("status-", "").replace(/-/g, " ");
+    }
+
+    if (progressTopic) {
+      const value = Number(progressTopic.replace("progress-", ""));
+      if (!isNaN(value)) {
+        progress = Math.max(0, Math.min(100, value));
+      }
+    }
+
+    return { status, progress };
+  }
+
+  async function loadLatestProject() {
+    try {
+      const response = await fetch(
+        `https://api.github.com/users/${username}/repos?sort=updated&per_page=1`
+      );
+
+      if (!response.ok) throw new Error("Failed to fetch latest project");
+
+      const repos = await response.json();
+      if (!Array.isArray(repos) || repos.length === 0) {
+        throw new Error("No repositories found");
+      }
+
+      const repo = repos[0];
+      const { status, progress } = parseStatus(repo.topics || []);
+
+      titleEl.textContent = repo.name;
+      descEl.textContent = repo.description || "No description available.";
+      linkEl.href = repo.html_url;
+
+      const formattedStatus = status
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+
+      statusEl.textContent = formattedStatus;
+
+      statusEl.classList.remove("status-completed", "status-progress", "status-unknown");
+
+      if (status.toLowerCase().includes("completed")) {
+        statusEl.classList.add("status-completed");
+      } else if (status.toLowerCase().includes("progress")) {
+        statusEl.classList.add("status-progress");
+      } else {
+        statusEl.classList.add("status-unknown");
+      }
+
+      if (status.toLowerCase().includes("progress") && progress !== null) {
+        progressWrap.classList.remove("hidden");
+        progressFill.style.width = `${progress}%`;
+        progressText.textContent = `${progress}% completed`;
+      } else {
+        progressWrap.classList.add("hidden");
+        progressFill.style.width = "0%";
+        progressText.textContent = "";
+      }
+    } catch (error) {
+      titleEl.textContent = "Could not load project";
+      descEl.textContent = "Please try again later.";
+      statusEl.textContent = "Unknown";
+      statusEl.classList.remove("status-completed", "status-progress");
+      statusEl.classList.add("status-unknown");
+      progressWrap.classList.add("hidden");
+      progressFill.style.width = "0%";
+      progressText.textContent = "";
+      console.error("GitHub error:", error);
+    }
+  }
+
+  loadLatestProject();
+})();
+
+/* =========================
+   Projects Filter + Sort
+========================= */
+(function projectsFilterAndSort() {
+  const filterSelect = document.getElementById("filterLanguage");
+  const sortSelect = document.getElementById("sortProjects");
+  const grid = document.querySelector(".projects-grid");
+  const projects = Array.from(document.querySelectorAll(".projects-grid .flip-card"));
+
+  if (!filterSelect || !sortSelect || !grid || !projects.length) return;
+
+  function getProjectName(project) {
+    return (project.dataset.name || "").trim().toLowerCase();
+  }
+
+  function getProjectCategories(project) {
+    return (project.dataset.category || "").trim().toLowerCase();
+  }
+
+  function updateProjects() {
+    const filterValue = filterSelect.value.toLowerCase();
+    const sortValue = sortSelect.value.toLowerCase();
+
+    const sortedProjects = [...projects].sort((a, b) => {
+      const nameA = getProjectName(a);
+      const nameB = getProjectName(b);
+
+      if (sortValue === "za") {
+        return nameB.localeCompare(nameA);
+      }
+
+      return nameA.localeCompare(nameB);
+    });
+
+    sortedProjects.forEach((project) => {
+      grid.appendChild(project);
+    });
+
+    projects.forEach((project) => {
+      const categories = getProjectCategories(project);
+
+      const matchesFilter =
+        filterValue === "all" || categories.includes(filterValue);
+
+      project.style.display = matchesFilter ? "" : "none";
+    });
+  }
+
+  filterSelect.addEventListener("change", updateProjects);
+  sortSelect.addEventListener("change", updateProjects);
+
+  updateProjects();
+})();
+
+/* =========================
+   Contact Timer + Feedback
+========================= */
+(function contactEnhancement() {
+  const timerEl = document.getElementById("timeSpent");
+  const feedback = document.getElementById("feedbackInput");
+  const form = document.getElementById("contactForm");
+
+  if (!timerEl || !form || !feedback) return;
+
+  let seconds = 0;
+
+  function updateTimer() {
+    seconds++;
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    timerEl.textContent =
+      `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+  }
+
+  setInterval(updateTimer, 1000);
+
+  form.addEventListener("submit", (event) => {
+    const feedbackText = feedback.value.trim();
+
+    if (feedbackText && feedbackText.length < 5) {
+      event.preventDefault();
+      alert("Please write a more meaningful feedback ✨");
+    }
+  });
+})();
+
+/* =========================
+   Choose Your Path
+========================= */
+(function chooseYourPath() {
+  const cards = document.querySelectorAll(".path-card");
+  const messageEl = document.getElementById("pathMessage");
+
+  if (!cards.length || !messageEl) return;
+
+  const pathConfig = {
+    build: {
+      message: "Here are selected projects that reflect my technical skills and problem-solving approach.",
+      target: "#projects"
+    },
+    create: {
+      message: "This path highlights my visual creativity, design sense, and artistic work.",
+      target: "#designs"
+    },
+    connect: {
+      message: "Feel free to reach out for collaboration, project discussion, or professional connection.",
+      target: "#contact"
+    }
+  };
+
+  function activatePath(path) {
+    const selected = pathConfig[path];
+    if (!selected) return;
+
+    cards.forEach((card) => {
+      card.classList.toggle("active", card.dataset.path === path);
+    });
+
+    messageEl.textContent = selected.message;
+
+    const targetSection = document.querySelector(selected.target);
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  }
+
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      activatePath(card.dataset.path);
+    });
+  });
+})();
+/* =========================
+   Visitor Name State
+========================= */
+(function visitorNameState() {
+  const input = document.getElementById("visitorNameInput");
+  const saveBtn = document.getElementById("saveVisitorName");
+  const clearBtn = document.getElementById("clearVisitorName");
+  const greeting = document.getElementById("visitorGreeting");
+
+  if (!input || !saveBtn || !clearBtn || !greeting) return;
+
+  const STORAGE_KEY = "visitorName";
+
+  function updateGreeting(name) {
+    if (name) {
+      greeting.textContent = `Welcome back, ${name} ✨`;
+      greeting.classList.add("has-name");
+    } else {
+      greeting.textContent = "Welcome! Your name will appear here.";
+      greeting.classList.remove("has-name");
+    }
+  }
+
+  function loadSavedName() {
+    const savedName = localStorage.getItem(STORAGE_KEY);
+
+    if (savedName) {
+      input.value = savedName;
+      updateGreeting(savedName);
+    } else {
+      updateGreeting("");
+    }
+  }
+
+  saveBtn.addEventListener("click", () => {
+    const name = input.value.trim();
+
+    if (!name) {
+      greeting.textContent = "Please enter your name first.";
+      greeting.classList.remove("has-name");
+      return;
+    }
+
+    localStorage.setItem(STORAGE_KEY, name);
+    updateGreeting(name);
+  });
+
+  clearBtn.addEventListener("click", () => {
+    localStorage.removeItem(STORAGE_KEY);
+    input.value = "";
+    updateGreeting("");
+  });
+
+  loadSavedName();
+})();

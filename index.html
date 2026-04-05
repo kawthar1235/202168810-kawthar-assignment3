@@ -81,55 +81,111 @@
   </header>
 
   <main id="main">
-    <!-- Hero Section -->
-    <section id="home" class="hero reveal" aria-labelledby="hero-heading">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <p class="badge" id="greetingBadge" aria-live="polite"></p>
-          <div class="quote-box" id="quoteBox">
-            <p class="quote-text" id="quoteText">Loading quote...</p>
-            <p class="quote-author" id="quoteAuthor"></p>
-            <button class="btn small" id="newQuoteBtn" type="button">New Quote</button>
-          </div>
-          <h1 class="hero-title with-photo" id="hero-heading">
-            <img
-              src="assets/images/me.png"
-              alt="Portrait of Kawthar Alkhawajah"
-              class="hero-photo"
-            />
+<!-- Hero Section -->
+<section id="home" class="hero reveal" aria-labelledby="hero-heading">
+  <div class="container hero-grid">
 
-            <span class="title-text">
-              <span class="hello-line">Hello!</span>
-              I’m <span class="accent typing-text" id="typingName"></span>
-            </span>
-          </h1>
+    <div class="hero-content">
+      <p class="badge" id="greetingBadge" aria-live="polite"></p>
 
-          <p class="hero-subtitle muted">
-            Software Engineering student focused on UI/UX design, front-end
-            development, and creating clean digital experiences.
-          </p>
+      <div class="visitor-box card">
+  <h3 class="card-title">Personalize Your Visit</h3>
 
-          <div class="hero-cta">
-            <a class="btn primary" href="#projects">View Projects</a>
-            <a class="btn" href="#contact">Contact Me</a>
-          </div>
-        </div>
 
-        <aside class="hero-card card" aria-label="Profile summary">
-          <div>
-            <h2 class="card-title">Kawthar Alkhawajah</h2>
-            <p class="muted">“Where design meets code.”</p>
+  <div class="visitor-controls">
+    <input
+      type="text"
+      id="visitorNameInput"
+      placeholder="Enter your name"
+      maxlength="20"
+    />
+    <button class="btn primary small" id="saveVisitorName" type="button">
+      Save
+    </button>
+    <button class="btn small" id="clearVisitorName" type="button">
+      Clear
+    </button>
+  </div>
 
-            <ul class="quick-info">
-              <li><span aria-hidden="true">📍</span> Saudi Arabia</li>
-              <li><span aria-hidden="true">🎓</span> Student at KFUPM</li>
-              <li><span aria-hidden="true">💻</span> Software Engineering</li>
-              <li><span aria-hidden="true">🎨</span> Graphic Designer</li>
-            </ul>
-          </div>
-        </aside>
+  <p id="visitorGreeting" class="visitor-greeting muted">
+    Welcome! Your name will appear here.
+  </p>
+</div>
+
+      <div class="quote-box" id="quoteBox">
+        <p class="quote-text" id="quoteText">Loading quote...</p>
+        <p class="quote-author" id="quoteAuthor"></p>
+        <button class="btn small" id="newQuoteBtn" type="button">New Quote</button>
       </div>
-    </section>
+
+      <h1 class="hero-title with-photo" id="hero-heading">
+        <img
+          src="assets/images/me.png"
+          alt="Portrait of Kawthar Alkhawajah"
+          class="hero-photo"
+        />
+
+        <span class="title-text">
+          <span class="hello-line">Hello!</span>
+          I’m <span class="accent typing-text" id="typingName"></span>
+        </span>
+      </h1>
+
+      <p class="hero-subtitle muted">
+        Software Engineering student focused on UI/UX design, front-end
+        development, and creating clean digital experiences.
+      </p>
+    </div>
+
+    <aside class="hero-card card" aria-label="Profile summary">
+      <div>
+        <h2 class="card-title">Kawthar Alkhawajah</h2>
+        <p class="muted">“Where design meets code.”</p>
+
+        <ul class="quick-info">
+          <li><span aria-hidden="true">📍</span> Saudi Arabia</li>
+          <li><span aria-hidden="true">🎓</span> Student at KFUPM</li>
+          <li><span aria-hidden="true">💻</span> Software Engineering</li>
+          <li><span aria-hidden="true">🎨</span> Graphic Designer</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section id="path-picker" class="section reveal" aria-labelledby="path-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="path-heading">Choose Your Path</h2>
+      <p class="muted">Select what you’d like to explore first.</p>
+    </div>
+
+    <div class="path-grid">
+      <button class="path-card" type="button" data-path="build">
+        <span class="path-icon" aria-hidden="true">💻</span>
+        <span class="path-title">Build</span>
+        <span class="path-desc">Explore my coding projects and technical work.</span>
+      </button>
+
+      <button class="path-card" type="button" data-path="create">
+        <span class="path-icon" aria-hidden="true">🎨</span>
+        <span class="path-title">Create</span>
+        <span class="path-desc">See my visual design work and creative direction.</span>
+      </button>
+
+      <button class="path-card" type="button" data-path="connect">
+        <span class="path-icon" aria-hidden="true">💌</span>
+        <span class="path-title">Connect</span>
+        <span class="path-desc">Reach out for collaboration or project discussion.</span>
+      </button>
+    </div>
+
+    <p id="pathMessage" class="path-message muted">
+      Select a path to personalize your experience.
+    </p>
+  </div>
+</section>
 
     <!-- About Section -->
     <section id="about" class="section reveal" aria-labelledby="about-heading">
@@ -190,7 +246,7 @@
       </div>
     </section>
 
-<!-- Projects Section -->
+    <!-- Projects Section -->
 <section id="projects" class="section alt reveal" aria-labelledby="projects-heading">
   <div class="container">
     <div class="section-head">
@@ -200,13 +256,65 @@
       </p>
     </div>
 
-    <div class="projects-grid">
+    <section class="latest-project card" id="latestProjectCard" aria-labelledby="latest-project-heading">
+      <p class="small muted latest-label">Latest from GitHub</p>
 
+      <h3 id="latest-project-heading">
+        <span id="latestProjectTitle">Loading latest project...</span>
+      </h3>
+
+      <p id="latestProjectDesc" class="muted">
+        Please wait while the latest repository is loading.
+      </p>
+
+      <p class="project-meta">
+        <strong>Status:</strong>
+        <span id="latestProjectStatus">Loading...</span>
+      </p>
+
+      <div class="progress-wrap hidden" id="latestProjectProgressWrap">
+        <div class="progress-bar" aria-hidden="true">
+          <div class="progress-fill" id="latestProjectProgressFill"></div>
+        </div>
+        <p class="small muted" id="latestProjectProgressText"></p>
+      </div>
+
+      <a
+        class="btn primary small"
+        id="latestProjectLink"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View on GitHub
+      </a>
+    </section>
+
+    <div class="projects-controls">
+      <select id="filterLanguage">
+        <option value="all">All</option>
+        <option value="web">Web</option>
+        <option value="java">Java</option>
+        <option value="sql">SQL</option>
+      </select>
+
+      <select id="sortProjects">
+        <option value="az">A → Z</option>
+        <option value="za">Z → A</option>
+      </select>
+    </div>
+
+    <div class="projects-grid">
       <!-- Project 1 -->
-      <article class="flip-card" aria-label="KFUPM CRN Schedule and Building Distance Tool project">
+      <article
+        class="flip-card"
+        data-category="java"
+        data-name="KFUPM Tool"
+        aria-label="KFUPM CRN Schedule and Building Distance Tool project"
+      >
         <div class="flip-card-inner">
           <div class="flip-card-front card">
-            <img class="project-img" src="assets/images/project-1.png" />
+            <img class="project-img" src="assets/images/project-1.png" alt="KFUPM Tool preview" />
             <h3>KFUPM CRN Schedule &amp; Building Distance Tool</h3>
             <p class="muted">Java campus scheduling tool</p>
           </div>
@@ -217,11 +325,13 @@
               Java-based academic tool for timetable generation and
               walking-distance estimation.
             </p>
-            <button class="btn primary details-btn"
+            <button
+              class="btn primary details-btn"
               data-title="KFUPM CRN Schedule & Building Distance Tool"
               data-description="A Java-based tool that allows students to enter their class CRNs and automatically generates a weekly timetable showing class locations by building. It also estimates the walking distance between consecutive classes."
               data-tools="Java, OOP, Scheduling Logic"
-              data-link="https://github.com/kawthar1235/xAcademics.git">
+              data-link="https://github.com/kawthar1235/xAcademics.git"
+            >
               View Details
             </button>
           </div>
@@ -229,10 +339,15 @@
       </article>
 
       <!-- Project 2 -->
-      <article class="flip-card">
+      <article
+        class="flip-card"
+        data-category="java sql"
+        data-name="Horse Stable Management System"
+        aria-label="Horse Stable Management System project"
+      >
         <div class="flip-card-inner">
           <div class="flip-card-front card">
-            <img class="project-img" src="assets/images/project-2.png" />
+            <img class="project-img" src="assets/images/project-2.png" alt="Horse Stable Management System preview" />
             <h3>Horse Stable Management System</h3>
             <p class="muted">Desktop app using Java and SQL</p>
           </div>
@@ -240,11 +355,13 @@
           <div class="flip-card-back card">
             <h3>Project Overview</h3>
             <p>Desktop system for managing horse and race data.</p>
-            <button class="btn primary details-btn"
+            <button
+              class="btn primary details-btn"
               data-title="Horse Stable Management System"
               data-description="A desktop management system for horse stables built using Java and SQL."
               data-tools="Java, SQL, Database"
-              data-link="https://github.com/kawthar1235">
+              data-link="https://github.com/kawthar1235"
+            >
               View Details
             </button>
           </div>
@@ -252,10 +369,15 @@
       </article>
 
       <!-- Project 3 -->
-      <article class="flip-card">
+      <article
+        class="flip-card"
+        data-category="web"
+        data-name="Planova"
+        aria-label="Planova project"
+      >
         <div class="flip-card-inner">
           <div class="flip-card-front card">
-            <img class="project-img" src="assets/images/project-3.png" />
+            <img class="project-img" src="assets/images/project-3.png" alt="Planova preview" />
             <h3>Planova</h3>
             <p class="muted">Productivity web app</p>
           </div>
@@ -265,22 +387,29 @@
             <p>
               A web-based productivity app for managing tasks and events.
             </p>
-            <button class="btn primary details-btn"
+            <button
+              class="btn primary details-btn"
               data-title="Planova"
               data-description="Task and event manager with countdowns and calendar view."
               data-tools="HTML, CSS, JavaScript"
-              data-link="https://github.com/kawthar1235/Planova.git">
+              data-link="https://github.com/kawthar1235/Planova.git"
+            >
               View Details
             </button>
           </div>
         </div>
       </article>
 
-        <!-- Project 4 -->
-      <article class="flip-card">
+      <!-- Project 4 -->
+      <article
+        class="flip-card"
+        data-category="web"
+        data-name="MemoNest"
+        aria-label="MemoNest project"
+      >
         <div class="flip-card-inner">
           <div class="flip-card-front card">
-            <img class="project-img" src="assets/images/project-4.png" />
+            <img class="project-img" src="assets/images/project-4.png" alt="MemoNest preview" />
             <h3>MemoNest</h3>
             <p class="muted">Digital memory journal web app</p>
           </div>
@@ -291,22 +420,23 @@
               A modern web app for storing daily memories with images,
               notes, and calendar-based navigation.
             </p>
-            <button class="btn primary details-btn"
+            <button
+              class="btn primary details-btn"
               data-title="MemoNest"
               data-description="MemoNest is a digital memory journal that allows users to save daily experiences with text and images. It features a calendar interface, rich text editing, image uploads, and an interactive UI designed for a smooth and emotional user experience."
               data-tools="HTML, CSS, JavaScript"
-              data-link="https://github.com/kawthar1235/MemoNest.git">
+              data-link="https://github.com/kawthar1235/MemoNest.git"
+            >
               View Details
             </button>
           </div>
         </div>
       </article>
-
     </div>
   </div>
 </section>
-
-    <!-- Designs Section -->
+    
+ <!-- Designs Section -->
     <section id="designs" class="section alt reveal" aria-labelledby="designs-heading">
       <div class="container">
         <div class="section-head">
@@ -362,91 +492,96 @@
         </a>
       </div>
     </div>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="section reveal" aria-labelledby="contact-heading">
-      <div class="container">
-        <div class="section-head">
-          <h2 id="contact-heading">Contact</h2>
-          <p class="muted">
-            Feel free to reach out for collaboration, project discussion, or
-            professional connection.
-          </p>
-        </div>
 
-        <div class="contact-grid">
-          <form class="card form" id="contactForm" novalidate>
-            <label for="name">Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Your name"
-              autocomplete="name"
-              required
-            />
+<!-- Contact Section -->
+<section id="contact" class="section reveal" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="contact-heading">Contact</h2>
+      <p class="muted">
+        Feel free to reach out for collaboration, project discussion, or
+        professional connection.
+      </p>
+    </div>
 
-            <label for="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="you@example.com"
-              autocomplete="email"
-              required
-            />
+    <div class="contact-grid">
+      <form class="card form" id="contactForm" novalidate>
+        <label for="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Your name"
+          autocomplete="name"
+          required
+        />
 
-            <label for="message">Message</label>
-            <textarea
-              name="message"
-              id="message"
-              rows="5"
-              placeholder="Write your message..."
-              required
-            ></textarea>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        />
 
-            <button class="btn primary" id="submitBtn" type="submit">
-              Send
-            </button>
-            <p
-              class="form-status small"
-              id="formStatus"
-              role="status"
-              aria-live="polite"
-            ></p>
-          </form>
+        <label for="message">Message</label>
+        <textarea
+          name="message"
+          id="message"
+          rows="5"
+          placeholder="Write your message..."
+          required
+        ></textarea>
 
-          <aside class="card" aria-labelledby="quick-links-heading">
-            <h3 id="quick-links-heading">Quick Links</h3>
-            <ul class="list">
-              <li>
-                <a
-                  href="https://github.com/kawthar1235"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/kawthar-al-khawaja-639a97367"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="mailto:kawtharkhawaja1@gmail.com">
-                  kawtharkhawaja1@gmail.com
-                </a>
-              </li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
+        <p class="small muted">
+          Time spent on this site: <span id="timeSpent">00:00</span>
+        </p>
+
+        <button class="btn primary" id="submitBtn" type="submit">
+          Send
+        </button>
+
+        <p
+          class="form-status small"
+          id="formStatus"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </form>
+
+      <aside class="card" aria-labelledby="quick-links-heading">
+        <h3 id="quick-links-heading">Quick Links</h3>
+        <ul class="list">
+          <li>
+            <a
+              href="https://github.com/kawthar1235"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/kawthar-al-khawaja-639a97367"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="mailto:kawtharkhawaja1@gmail.com">
+              kawtharkhawaja1@gmail.com
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
   </main>
 
   <!-- Footer -->
