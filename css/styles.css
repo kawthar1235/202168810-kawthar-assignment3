@@ -362,10 +362,8 @@ html[data-theme="dark"] .section{
    7) HERO
 ========================= */
 .hero{
-  width: min(1100px, 92%);
-  margin: 10px auto 40px; 
-  padding: 10px 24px 40px; 
-  transform: translateX(-40px); 
+  margin: 10px 0 40px;
+  padding: 10px 0 40px;
 }
 
 .hero-grid{
