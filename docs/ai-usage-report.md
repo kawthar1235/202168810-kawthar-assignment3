@@ -1,66 +1,118 @@
 # 🤖 AI Usage Report
 
-## Overview
+## 📌 Overview
 
-AI tools were used throughout the development of this portfolio to support coding, design, and documentation. The goal was to enhance productivity while maintaining full understanding and control over the final output.
-
----
-
-## Tools Used
-
-- ChatGPT (primary assistant)
+AI tools were used throughout the development of this portfolio to support **problem-solving, debugging, UI/UX design, and documentation**.
+The purpose of using AI was to enhance productivity while ensuring full understanding and control over all implemented features.
 
 ---
 
-## Use Cases
+## 🛠️ Tools Used
 
-AI was used for the following purposes:
-
-- Generating layout and UI ideas  
-- Debugging JavaScript and fixing errors  
-- Improving code structure and readability  
-- Writing and refining documentation (README, reports)  
-- Suggesting better design practices  
+* **ChatGPT** (primary AI assistant)
 
 ---
 
-## How AI Was Used Responsibly
+## 💡 Use Cases
 
-- All generated code was reviewed and tested  
-- Outputs were modified to match project requirements  
-- The final implementation reflects my own understanding  
-- AI was used as a support tool, not a replacement  
+AI was used in several key parts of the project:
 
----
+### 🎨 UI/UX Design
 
-## Benefits
-
-- Faster development process  
-- Improved code organization  
-- Better UI/UX design decisions  
-- Helped overcome debugging challenges  
+* Suggested layout improvements (hero section alignment, spacing, card positioning)
+* Helped enhance visual structure and consistency
+* Improved user experience decisions
 
 ---
 
-## Challenges
+### 💻 Code Development & Debugging
 
-- Some generated solutions required adjustments  
-- Needed careful review to ensure correctness  
-- Not all suggestions fit the project directly  
+* Assisted in fixing JavaScript issues (filtering, sorting, timer bugs)
+* Helped structure logic for:
 
----
-
-## Learning Outcomes
-
-Through using AI, I learned:
-
-- How to evaluate and improve generated code  
-- Better problem-solving approaches  
-- How to structure a complete front-end project  
-- Importance of reviewing and understanding code  
+  * Project filtering & sorting
+  * Floating timer
+  * Visitor name system (localStorage)
+* Improved code readability and organization
 
 ---
 
-## Conclusion
+### 📄 Documentation
 
-AI was a valuable tool that enhanced the development process. However, the final project reflects my own effort, understanding, and customization.
+* Assisted in writing:
+
+  * README.md
+  * AI usage report
+  * Technical explanations
+* Helped structure content clearly and professionally
+
+---
+
+## ⚖️ Responsible Use & Modifications
+
+* All AI-generated code was:
+
+  * Reviewed carefully
+  * Tested manually
+  * Modified to fit assignment requirements
+
+* I ensured that:
+
+  * The logic is fully understood
+  * The implementation reflects my own work
+  * No code was copied without adaptation
+
+AI was used strictly as a **support tool**, not as a replacement for my own effort.
+
+---
+
+## 🚀 Benefits
+
+Using AI provided several advantages:
+
+* Faster debugging and problem-solving
+* Cleaner and more organized code
+* Better design decisions and UI improvements
+* Improved understanding of JavaScript logic
+* Increased productivity
+
+---
+
+## ⚠️ Challenges
+
+Despite the benefits, some challenges were encountered:
+
+* Some AI suggestions did not fully match the project requirements
+* Certain solutions required adjustments and simplification
+* Needed careful validation to avoid incorrect logic
+* Over-reliance risk required conscious effort to stay in control
+
+---
+
+## 📚 Learning Outcomes
+
+Through using AI in this project, I developed:
+
+* Stronger ability to **analyze and improve generated code**
+
+* Better understanding of:
+
+  * JavaScript logic
+  * State management (localStorage)
+  * DOM manipulation
+
+* Improved debugging skills
+
+* Enhanced ability to structure a complete front-end project
+
+* Awareness of responsible AI usage in software development
+
+---
+
+## 🧾 Conclusion
+
+AI played an important role in supporting the development process, especially in debugging, structuring logic, and improving design.
+
+However, the final project reflects **my own understanding, implementation, and customization**, with AI used only as a guiding and assisting tool.
+
+---
