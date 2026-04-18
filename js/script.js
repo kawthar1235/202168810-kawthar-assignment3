@@ -608,40 +608,6 @@ const $$ = (selector) => document.querySelectorAll(selector);
 })();
 
 /* =========================
-   Contact Timer + Feedback
-========================= */
-(function contactEnhancement() {
-  const timerEl = document.getElementById("timeSpent");
-  const feedback = document.getElementById("feedbackInput");
-  const form = document.getElementById("contactForm");
-
-  if (!timerEl || !form || !feedback) return;
-
-  let seconds = 0;
-
-  function updateTimer() {
-    seconds++;
-
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-
-    timerEl.textContent =
-      `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
-  }
-
-  setInterval(updateTimer, 1000);
-
-  form.addEventListener("submit", (event) => {
-    const feedbackText = feedback.value.trim();
-
-    if (feedbackText && feedbackText.length < 5) {
-      event.preventDefault();
-      alert("Please write a more meaningful feedback ✨");
-    }
-  });
-})();
-
-/* =========================
    Choose Your Path
 ========================= */
 (function chooseYourPath() {
@@ -691,57 +657,64 @@ const $$ = (selector) => document.querySelectorAll(selector);
   });
 })();
 /* =========================
-   Visitor Name State
+   Visitor Name
 ========================= */
-(function visitorNameState() {
+(function visitorName() {
+  const modal = document.getElementById("nameModal");
   const input = document.getElementById("visitorNameInput");
-  const saveBtn = document.getElementById("saveVisitorName");
-  const clearBtn = document.getElementById("clearVisitorName");
-  const greeting = document.getElementById("visitorGreeting");
+  const btn = document.getElementById("saveNameBtn");
+  const greeting = document.getElementById("greetingBadge");
 
-  if (!input || !saveBtn || !clearBtn || !greeting) return;
+  const savedName = localStorage.getItem("visitorName");
 
-  const STORAGE_KEY = "visitorName";
+  function setGreeting(name) {
+    const hour = new Date().getHours();
+    let greet = "Hello";
 
-  function updateGreeting(name) {
-    if (name) {
-      greeting.textContent = `Welcome back, ${name} ✨`;
-      greeting.classList.add("has-name");
-    } else {
-      greeting.textContent = "Welcome! Your name will appear here.";
-      greeting.classList.remove("has-name");
-    }
+    if (hour < 12) greet = "Good morning";
+    else if (hour < 18) greet = "Good afternoon";
+    else greet = "Good evening";
+
+    greeting.textContent = `${greet}, ${name} ✨`;
   }
 
-  function loadSavedName() {
-    const savedName = localStorage.getItem(STORAGE_KEY);
-
-    if (savedName) {
-      input.value = savedName;
-      updateGreeting(savedName);
-    } else {
-      updateGreeting("");
-    }
+  // إذا عنده اسم مخزن
+  if (savedName) {
+    modal.style.display = "none";
+    setGreeting(savedName);
   }
 
-  saveBtn.addEventListener("click", () => {
+  btn.addEventListener("click", () => {
     const name = input.value.trim();
 
-    if (!name) {
-      greeting.textContent = "Please enter your name first.";
-      greeting.classList.remove("has-name");
-      return;
-    }
+    if (!name) return;
 
-    localStorage.setItem(STORAGE_KEY, name);
-    updateGreeting(name);
+    localStorage.setItem("visitorName", name);
+    modal.style.display = "none";
+
+    setGreeting(name);
   });
+})();
 
-  clearBtn.addEventListener("click", () => {
-    localStorage.removeItem(STORAGE_KEY);
-    input.value = "";
-    updateGreeting("");
-  });
+/* =========================
+   Floating Timer
+========================= */
+(function floatingTimer() {
+  const timerEl = document.getElementById("timeSpent");
+  if (!timerEl) return;
 
-  loadSavedName();
+  let seconds = 0;
+
+  function updateTimer() {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    timerEl.textContent =
+      `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+
+    seconds += 1;
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
 })();

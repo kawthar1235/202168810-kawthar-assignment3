@@ -80,7 +80,12 @@
     </div>
   </header>
 
-  <main id="main">
+  <div class="floating-timer" id="floatingTimer" aria-live="polite">
+  Time on site: <span id="timeSpent">00:00</span>
+</div>
+
+  <main id="main">\
+    
 <!-- Hero Section -->
 <section id="home" class="hero reveal" aria-labelledby="hero-heading">
   <div class="container hero-grid">
@@ -88,29 +93,6 @@
     <div class="hero-content">
       <p class="badge" id="greetingBadge" aria-live="polite"></p>
 
-      <div class="visitor-box card">
-  <h3 class="card-title">Personalize Your Visit</h3>
-
-
-  <div class="visitor-controls">
-    <input
-      type="text"
-      id="visitorNameInput"
-      placeholder="Enter your name"
-      maxlength="20"
-    />
-    <button class="btn primary small" id="saveVisitorName" type="button">
-      Save
-    </button>
-    <button class="btn small" id="clearVisitorName" type="button">
-      Clear
-    </button>
-  </div>
-
-  <p id="visitorGreeting" class="visitor-greeting muted">
-    Welcome! Your name will appear here.
-  </p>
-</div>
 
       <div class="quote-box" id="quoteBox">
         <p class="quote-text" id="quoteText">Loading quote...</p>
@@ -535,10 +517,6 @@
           required
         ></textarea>
 
-        <p class="small muted">
-          Time spent on this site: <span id="timeSpent">00:00</span>
-        </p>
-
         <button class="btn primary" id="submitBtn" type="submit">
           Send
         </button>
@@ -591,5 +569,15 @@
       <a class="small" href="#home">Back to top ↑</a>
     </div>
   </footer>
+  <div class="name-modal" id="nameModal">
+  <div class="name-box">
+    <h3>Welcome ✨</h3>
+    <p>What should we call you?</p>
+
+    <input type="text" id="visitorNameInput" placeholder="Enter your name..." />
+
+    <button id="saveNameBtn" class="btn primary">Continue</button>
+  </div>
+</div>
 </body>
 </html>
