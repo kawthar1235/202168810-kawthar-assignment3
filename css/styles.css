@@ -363,7 +363,7 @@ html[data-theme="dark"] .section{
 ========================= */
 .hero{
   width: min(1100px, 92%);
-  margin: 10px 150px 40px; 
+  margin: 10px auto 40px; 
   padding: 10px 24px 40px; 
 }
 
