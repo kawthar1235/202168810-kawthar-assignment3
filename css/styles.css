@@ -369,8 +369,10 @@ html[data-theme="dark"] .section{
 
 .hero-grid{
   display: grid;
-  grid-template-columns: minmax(500px, 1fr) 320px;
-  column-gap: 270px;
+  grid-template-columns: 1fr 320px;
+  column-gap: 40px;
+  row-gap: 24px;
+  align-items: start;
 }
 
 .hero-title{
